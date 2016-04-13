@@ -37,7 +37,12 @@ fi
 # which may fail on systems lacking tput or terminfo
 set -e
 
-SINCE=${1:-"yesterday"}
+if [[ -z "$1" ]] ; then
+  SINCE="yesterday"
+else
+  SINCE=${1:-"yesterday"}
+fi
+
 AUTHOR=${2:-"`git config user.name`"}
 
 ## In case it is the start of week, we need to
