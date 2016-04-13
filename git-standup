@@ -59,7 +59,8 @@ GIT_LOG_COMMAND="git --no-pager log \
     --author=\""$AUTHOR*"\"
     --abbrev-commit
     --oneline
-    --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+    --branches
+    --pretty=format:'%Cred%h%Creset  %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset'"
 
 ## For when the command has been run in a non-repo directory
 if [[ ! -d ".git" ]]; then
