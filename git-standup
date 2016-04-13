@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ $# -gt 2 ]] ; then
-  >&2 echo "Usage: $0 [fullname] [weekstart-weekend]\nExample: $0 \"John Doe\" last 2 days"
+  >&2 echo "Usage: $0 [since] [fullname]";
+      echo "Example: $0 \"last 2 days\" \"John Doe\"";
   exit 1
 fi
 
@@ -36,22 +37,21 @@ fi
 # which may fail on systems lacking tput or terminfo
 set -e
 
-AUTHOR=${1:-"`git config user.name`"}
-SINCE=${2:-"yesterday"}
-
+SINCE=${1:-"yesterday"}
+AUTHOR=${2:-"`git config user.name`"}
 
 ## In case it is the start of week, we need to
 ## show the commits since the last weekend
 shopt -s nocasematch
-if [[ $WEEKSTART == "$(date +%a)" ]] ; then
-  SINCE="last Fri";
-fi
+# if [[ $WEEKSTART == "$(date +%a)" ]] ; then
+#   SINCE="last ";
+# fi
 
 GIT_LOG_COMMAND="git --no-pager log \
     --all
     --no-merges
     --since \"$SINCE\"
-    --author=\"$AUTHOR\"
+    --author=\""$AUTHOR*"\"
     --abbrev-commit
     --oneline
     --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
