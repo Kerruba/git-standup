@@ -68,7 +68,7 @@ You can have a look to other people commits:
 $ git standup "last 2 weeks" "John Doe"
 
 # Considering yesterday commits from 'John Doe'
-$git standup "" "John Doe"
+$ git standup "" "John Doe"
 ```
 
 ## Motivation
